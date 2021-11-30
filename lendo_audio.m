@@ -16,7 +16,7 @@ transf = transf(1:floor(length(transf)/2));
 n = numel(y);
 freq = (0:n-1).*fs/n;
 freq = freq(1:floor(length(freq)/2));
-%figure(2)
+figure(2)
 plot(freq, abs(transf));
 axis([0 15000 0 2000])
 title('Domínio da frequência')
@@ -25,8 +25,10 @@ title('Domínio da frequência')
 %sound(y, fs)
 
 %% FILTRAR
+%usei valores que ela colocou ali, alguns não consegui ver 
+%pode ser que esteja ruim para o tamanho do áudio esses valores, o dela era muito menor
 d = designfilt ( 'lowpassiir' , ...         % Tipo de resposta 
-       'PassbandFrequency' , 400, ...      % Restrições de frequência 
+       'PassbandFrequency' , 200, ...      % Restrições de frequência 
        'StopbandFrequency' , 1000, ... 
        'PassbandRipple' , 1, ...           % Restrições de magnitude 
        'StopbandAttenuation' , 60, ... 
@@ -38,3 +40,15 @@ filtrado = filter(d,y);
 figure(3)
 plot(t, filtrado)
 title('Som filtrado')
+
+%% OUVIR SOM 
+%sound(y, fs)
+
+%% TRANSFORMADA
+transffilt = fft(filtrado);
+transffilt = transffilt(1:floor(length(transffilt)/2));
+n = numel(filtrado);
+figure(4)
+plot(freq, abs(transffilt));
+axis([0 15000 0 2000])
+title('Domínio da frequência filtrado')
