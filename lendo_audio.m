@@ -1,7 +1,7 @@
 clear
 clc
 
-[y,fs] = audioread('DerezzedShort5.wav');
+[y,fs] = audioread('200hz.wav');
 %número de amostras por segundo fs = 44100
 y = y(:,1)+y(:,2);
 
