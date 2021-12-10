@@ -1,12 +1,12 @@
 clear
 clc
 
-[y,fs] = audioread('audio1.mp3');
+[y,fs] = audioread('DerezzedShort5.wav');
 %número de amostras por segundo fs = 44100
 y = y(:,1)+y(:,2);
 
 t = 0:1/fs:(numel(y)-1)/fs;
-%figure(1)
+figure(1)
 plot(t,y);
 title('Som no domínio do tempo')
 
@@ -52,3 +52,5 @@ figure(4)
 plot(freq, abs(transffilt));
 axis([0 15000 0 2000])
 title('Domínio da frequência filtrado')
+
+%% PASSA BANDA
